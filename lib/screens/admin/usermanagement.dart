@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import '../color.dart'; // Import your color file
 
 class UserManagement extends StatelessWidget {
   const UserManagement({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const bgColor = Color(0xFFFFFCEA); // Background color
-    const cardColor = Color(0xFFFFF2D9); // Card color
-
     // Dummy Users
     final List<Map<String, String>> users = [
       {"name": "Johan Deo", "role": "Admin"},
@@ -26,7 +24,7 @@ class UserManagement extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
-            backgroundColor: bgColor,
+            backgroundColor: AppColors.cardColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -45,7 +43,7 @@ class UserManagement extends StatelessWidget {
                     controller: nameController,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: cardColor,
+                      fillColor: AppColors.inputFieldColor,
                       labelText: "Name",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -58,7 +56,7 @@ class UserManagement extends StatelessWidget {
                     controller: roleController,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: cardColor,
+                      fillColor: AppColors.inputFieldColor,
                       labelText: "Role",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -77,7 +75,7 @@ class UserManagement extends StatelessWidget {
                       const SizedBox(width: 8),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green[800],
+                          backgroundColor: AppColors.buttonColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -107,7 +105,7 @@ class UserManagement extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
-            backgroundColor: bgColor,
+            backgroundColor: AppColors.bgColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -137,7 +135,7 @@ class UserManagement extends StatelessWidget {
                       const SizedBox(width: 8),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
+                          backgroundColor: (AppColors.buttonColorSecondary),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -167,7 +165,7 @@ class UserManagement extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
-            backgroundColor: bgColor,
+            backgroundColor: AppColors.cardColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12)),
             child: Padding(
@@ -178,7 +176,7 @@ class UserManagement extends StatelessWidget {
                 children: [
                   const Text(
                     "User Details",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
                   ),
                   const SizedBox(height: 16),
                   ListTile(
@@ -206,7 +204,7 @@ class UserManagement extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green[800],
+                        backgroundColor: AppColors.buttonColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -235,7 +233,7 @@ class UserManagement extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
-            backgroundColor: bgColor,
+            backgroundColor: AppColors.cardColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -254,7 +252,7 @@ class UserManagement extends StatelessWidget {
                     controller: nameController,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: cardColor,
+                      fillColor: AppColors.inputFieldColor,
                       labelText: "Name",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -267,7 +265,7 @@ class UserManagement extends StatelessWidget {
                     controller: roleController,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: cardColor,
+                      fillColor: AppColors.inputFieldColor,
                       labelText: "Role",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -286,7 +284,7 @@ class UserManagement extends StatelessWidget {
                       const SizedBox(width: 8),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green[800],
+                          backgroundColor: AppColors.buttonColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -311,7 +309,7 @@ class UserManagement extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: AppColors.bgColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -329,7 +327,7 @@ class UserManagement extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: cardColor,
+                  color: AppColors.cardColor,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Row(
@@ -351,7 +349,7 @@ class UserManagement extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green[800],
+                    backgroundColor: AppColors.buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -370,7 +368,7 @@ class UserManagement extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: cardColor,
+                  fillColor: AppColors.cardColor,
                   prefixIcon: const Icon(Icons.search),
                   hintText: "Search",
                   border: OutlineInputBorder(
@@ -391,7 +389,7 @@ class UserManagement extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           vertical: 12, horizontal: 16),
                       decoration: BoxDecoration(
-                        color: cardColor,
+                        color: AppColors.cardColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Row(
@@ -405,10 +403,24 @@ class UserManagement extends StatelessWidget {
                                   fontSize: 16, fontWeight: FontWeight.w500),
                             ),
                           ),
-                          Text(
-                            users[index]["role"]!,
-                            style: const TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w400),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: users[index]["role"] == "Admin" 
+                                ? AppColors.buttonColor.withOpacity(0.2)
+                                : AppColors.gold.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              users[index]["role"]!,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: users[index]["role"] == "Admin" 
+                                  ? AppColors.buttonColor
+                                  : AppColors.gold,
+                              ),
+                            ),
                           ),
                           const SizedBox(width: 10),
 
@@ -416,17 +428,15 @@ class UserManagement extends StatelessWidget {
                           Row(
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.edit, color: Colors.black),
+                                icon: Icon(Icons.edit, color: AppColors.buttonColor),
                                 onPressed: () => _showEditUserDialog(context, users[index]),
                               ),
                               IconButton(
-                                icon: const Icon(Icons.more_horiz,
-                                    color: Colors.black),
+                                icon: Icon(Icons.more_horiz, color: AppColors.buttonColor),
                                 onPressed: () => _showUserDetailsDialog(context, users[index]),
                               ),
                               IconButton(
-                                icon: const Icon(Icons.delete,
-                                    color: Colors.black),
+                                icon: Icon(Icons.delete, color: (AppColors.buttonColorSecondary)),
                                 onPressed: () => _showDeleteConfirmationDialog(context, users[index]["name"]!),
                               ),
                             ],

@@ -12,7 +12,6 @@ class Userdashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // Quick buttons data with navigation
     final List<Map<String, dynamic>> quickButtons = [
       {
@@ -36,7 +35,7 @@ class Userdashboard extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: (bgcolor),
+      backgroundColor: AppColors.bgColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -119,7 +118,7 @@ class Userdashboard extends StatelessWidget {
       // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // 0 = Home by default
-        backgroundColor: (bgcolor),
+        backgroundColor: AppColors.bgColor,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.black87,
@@ -168,8 +167,9 @@ class Userdashboard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: (cardColor),
+        color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: AppColors.boxShadow,
       ),
       child: Column(
         crossAxisAlignment: center
@@ -203,8 +203,9 @@ class Userdashboard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
         decoration: BoxDecoration(
-          color: (cardColor),
+          color: AppColors.cardColor,
           borderRadius: BorderRadius.circular(12),
+          boxShadow: AppColors.boxShadow,
         ),
         child: Row(
           children: [

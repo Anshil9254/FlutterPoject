@@ -62,9 +62,9 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgcolor,
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        backgroundColor: bgcolor,
+        backgroundColor: AppColors.bgColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -144,7 +144,7 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: _selectedWallet != null 
-                      ? buttonColor 
+                      ? AppColors.buttonColor 
                       : Colors.grey.shade400,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
@@ -286,7 +286,7 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return Dialog(
-          backgroundColor: bgcolor,
+          backgroundColor: AppColors.bgColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: Padding(
             padding: const EdgeInsets.all(24),
@@ -294,7 +294,7 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                  CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(buttonColor),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.buttonColor),
                 ),
                 const SizedBox(height: 20),
                 const Text(
@@ -321,7 +321,7 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return Dialog(
-          backgroundColor: bgcolor,
+          backgroundColor: AppColors.bgColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: Padding(
             padding: const EdgeInsets.all(24),
@@ -350,7 +350,7 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
+                      backgroundColor: AppColors.buttonColor,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),

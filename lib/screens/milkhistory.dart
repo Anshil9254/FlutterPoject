@@ -18,9 +18,9 @@ class MilkHistoryPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: (bgcolor), // Cream background
+      backgroundColor: AppColors.bgColor, // Cream background
       appBar: AppBar(
-        backgroundColor: (bgcolor),
+        backgroundColor: AppColors.bgColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black, size: 28),
@@ -49,7 +49,7 @@ class MilkHistoryPage extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: (cardColor),
+                color: AppColors.cardColor,
                 borderRadius: BorderRadius.circular(16),
                 
               ),
@@ -79,7 +79,7 @@ class MilkHistoryPage extends StatelessWidget {
                       horizontal: 7,
                     ),
                     decoration: BoxDecoration(
-                color: (cardColor),
+                color: AppColors.cardColor,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(
