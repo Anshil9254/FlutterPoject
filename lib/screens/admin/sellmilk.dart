@@ -182,7 +182,7 @@ class SellMilkPage extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               DropdownButtonFormField<String>(
-                                value: "Cow",
+                                initialValue: "Cow",
                                 items: ["Cow", "Buffalo"]
                                     .map((e) =>
                                         DropdownMenuItem(value: e, child: Text(e)))

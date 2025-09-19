@@ -16,7 +16,7 @@ class BuyMilkPaymentPage extends StatelessWidget {
     ];
 
     // Function to show edit payment dialog
-    void _showEditPaymentDialog(BuildContext context, Map<String, String> customer) {
+    void showEditPaymentDialog(BuildContext context, Map<String, String> customer) {
       final nameController = TextEditingController(text: customer['name']);
       final quantityController = TextEditingController(text: customer['quantity']);
       final amountController = TextEditingController(text: customer['amount']);
@@ -91,7 +91,7 @@ class BuyMilkPaymentPage extends StatelessWidget {
                   
                   // Status Dropdown
                   DropdownButtonFormField<String>(
-                    value: selectedStatus,
+                    initialValue: selectedStatus,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: AppColors.inputFieldColor,
@@ -154,7 +154,7 @@ class BuyMilkPaymentPage extends StatelessWidget {
     }
 
     // Function to show payment details dialog
-    void _showPaymentDetailsDialog(BuildContext context, Map<String, String> customer) {
+    void showPaymentDetailsDialog(BuildContext context, Map<String, String> customer) {
       bool isCompleted = customer["status"] == "completed";
       
       showDialog(
@@ -246,7 +246,7 @@ class BuyMilkPaymentPage extends StatelessWidget {
     }
 
     // Function to show delete confirmation dialog
-    void _showDeleteConfirmationDialog(BuildContext context, String customerName) {
+    void showDeleteConfirmationDialog(BuildContext context, String customerName) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -422,17 +422,17 @@ class BuyMilkPaymentPage extends StatelessWidget {
                               // Edit Button
                               IconButton(
                                 icon: Icon(Icons.edit, color: Colors.black),
-                                onPressed: () => _showEditPaymentDialog(context, customer),
+                                onPressed: () => showEditPaymentDialog(context, customer),
                               ),
                               // Details Button
                               IconButton(
                                 icon: Icon(Icons.more_horiz, color: Colors.black),
-                                onPressed: () => _showPaymentDetailsDialog(context, customer),
+                                onPressed: () => showPaymentDetailsDialog(context, customer),
                               ),
                               // Delete Button
                               IconButton(
                                 icon: Icon(Icons.delete, color: AppColors.buttonColorSecondary),
-                                onPressed: () => _showDeleteConfirmationDialog(context, customer["name"]!),
+                                onPressed: () => showDeleteConfirmationDialog(context, customer["name"]!),
                               ),
                             ],
                           )

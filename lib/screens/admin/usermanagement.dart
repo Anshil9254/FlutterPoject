@@ -16,7 +16,7 @@ class UserManagement extends StatelessWidget {
     ];
 
     // Function to show edit user dialog
-    void _showEditUserDialog(BuildContext context, Map<String, String> user) {
+    void showEditUserDialog(BuildContext context, Map<String, String> user) {
       final nameController = TextEditingController(text: user['name']);
       final roleController = TextEditingController(text: user['role']);
       
@@ -100,7 +100,7 @@ class UserManagement extends StatelessWidget {
     }
 
     // Function to show delete confirmation dialog
-    void _showDeleteConfirmationDialog(BuildContext context, String userName) {
+    void showDeleteConfirmationDialog(BuildContext context, String userName) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -160,7 +160,7 @@ class UserManagement extends StatelessWidget {
     }
 
     // Function to show user details dialog
-    void _showUserDetailsDialog(BuildContext context, Map<String, String> user) {
+    void showUserDetailsDialog(BuildContext context, Map<String, String> user) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -225,7 +225,7 @@ class UserManagement extends StatelessWidget {
     }
 
     // Function to show add user dialog
-    void _showAddUserDialog(BuildContext context) {
+    void showAddUserDialog(BuildContext context) {
       final nameController = TextEditingController();
       final roleController = TextEditingController();
       
@@ -359,7 +359,7 @@ class UserManagement extends StatelessWidget {
                     "Add User",
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () => _showAddUserDialog(context),
+                  onPressed: () => showAddUserDialog(context),
                 ),
               ),
               const SizedBox(height: 16),
@@ -429,15 +429,15 @@ class UserManagement extends StatelessWidget {
                             children: [
                               IconButton(
                                 icon: Icon(Icons.edit, color: AppColors.buttonColor),
-                                onPressed: () => _showEditUserDialog(context, users[index]),
+                                onPressed: () => showEditUserDialog(context, users[index]),
                               ),
                               IconButton(
                                 icon: Icon(Icons.more_horiz, color: AppColors.buttonColor),
-                                onPressed: () => _showUserDetailsDialog(context, users[index]),
+                                onPressed: () => showUserDetailsDialog(context, users[index]),
                               ),
                               IconButton(
                                 icon: Icon(Icons.delete, color: (AppColors.buttonColorSecondary)),
-                                onPressed: () => _showDeleteConfirmationDialog(context, users[index]["name"]!),
+                                onPressed: () => showDeleteConfirmationDialog(context, users[index]["name"]!),
                               ),
                             ],
                           )
