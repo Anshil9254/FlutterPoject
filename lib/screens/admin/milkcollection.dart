@@ -57,7 +57,7 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
+      backgroundColor: const Color.fromRGBO(255, 254, 239, 1),
       appBar: AppBar(
         backgroundColor: AppColors.bgColor,
         automaticallyImplyLeading: true,
@@ -216,7 +216,7 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                           child: SizedBox(
                             height: 40,
                             child: DropdownButtonFormField<String>(
-                              value: _animalType,
+                              initialValue: _animalType,
                               items: ["Cow", "Buffalo"]
                                   .map((e) => DropdownMenuItem(
                                       value: e,
