@@ -5,7 +5,11 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
+<<<<<<< HEAD
   sdk: '>=3.8.1 <4.0.0'  # Fixed the syntax
+=======
+  sdk: ^3.5.4
+>>>>>>> 2da006039c63a4c16c759d405ff6c01f4318ec79
 
 dependencies:
   flutter:
@@ -17,8 +21,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+<<<<<<< HEAD
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.1
+=======
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.1   # (check latest version)
+>>>>>>> 2da006039c63a4c16c759d405ff6c01f4318ec79
 
 flutter:
   uses-material-design: true
