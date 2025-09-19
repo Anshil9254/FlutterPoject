@@ -5,32 +5,32 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.8.1
+  sdk: '>=3.8.1 <4.0.0'  # Fixed the syntax
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
   url_launcher: ^6.1.10
+  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  flutter_launcher_icons: ^0.14.1   # (check latest version)
+  flutter_launcher_icons: ^0.14.1
 
 flutter:
   uses-material-design: true
-
   assets:
     - assets/logo.png
     - assets/milk_bottle.png
     - assets/profile.png
 
+# This should be OUTSIDE the flutter: section
 flutter_launcher_icons:
   android: true
   ios: true
   web: true
   image_path: "assets/logo.png"  # your logo file path
   min_sdk_android: 21 # android min sdk
-
