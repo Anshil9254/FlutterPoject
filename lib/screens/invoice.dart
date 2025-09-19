@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'userdashboard.dart';
-import 'admin/payment_card.dart';
-import 'admin/payment_upi.dart';
 import 'admin/payment_wallet.dart';
 import 'color.dart';
 import 'reusable_header.dart';
@@ -189,18 +187,6 @@ class InvoicePage extends StatelessWidget {
                   children: [
                     _buildPaymentCard(
                       context,
-                      icon: Icons.credit_card,
-                      title: "Credit/Debit Card",
-                      onTap: () => _navigateToCardPayment(context),
-                    ),
-                    _buildPaymentCard(
-                      context,
-                      icon: Icons.account_balance,
-                      title: "UPI Payment",
-                      onTap: () => _navigateToUPIPayment(context),
-                    ),
-                    _buildPaymentCard(
-                      context,
                       icon: Icons.account_balance_wallet,
                       title: "Wallet",
                       onTap: () => _navigateToWalletPayment(context),
@@ -259,25 +245,6 @@ class InvoicePage extends StatelessWidget {
     );
   }
 
-  void _navigateToCardPayment(BuildContext context) {
-    Navigator.pop(context); // Close the bottom sheet
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const CardPaymentPage(),
-      ),
-    );
-  }
-
-  void _navigateToUPIPayment(BuildContext context) {
-    Navigator.pop(context); // Close the bottom sheet
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const UPIPaymentPage(),
-      ),
-    );
-  }
 
   void _navigateToWalletPayment(BuildContext context) {
     Navigator.pop(context); // Close the bottom sheet

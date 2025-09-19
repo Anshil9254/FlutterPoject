@@ -75,7 +75,8 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
             children: [
               // Title Section
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
                   color: AppColors.cardColor,
                   borderRadius: BorderRadius.circular(12),
@@ -126,18 +127,23 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                     GestureDetector(
                       onTap: () => _selectDate(context),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 8),
                         decoration: BoxDecoration(
                           color: AppColors.inputFieldColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.calendar_today_outlined, size: 16, color: AppColors.textSecondary),
+                            const Icon(Icons.calendar_today_outlined,
+                                size: 16, color: AppColors.textSecondary),
                             const SizedBox(width: 8),
                             Text(
                               "${_selectedDate.day} ${_getMonthName(_selectedDate.month)} ${_selectedDate.year}",
-                              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.textPrimary),
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.textPrimary),
                             ),
                           ],
                         ),
@@ -148,7 +154,9 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                     // Code No.
                     const Padding(
                       padding: EdgeInsets.only(left: 4.0),
-                      child: Text("Code No.", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                      child: Text("Code No.",
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w600)),
                     ),
                     const SizedBox(height: 6),
                     SizedBox(
@@ -163,7 +171,8 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 10),
                         ),
                       ),
                     ),
@@ -172,7 +181,9 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                     // Name
                     const Padding(
                       padding: EdgeInsets.only(left: 4.0),
-                      child: Text("Name", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                      child: Text("Name",
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w600)),
                     ),
                     const SizedBox(height: 6),
                     SizedBox(
@@ -187,7 +198,8 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
                           ),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 10),
                         ),
                       ),
                     ),
@@ -196,15 +208,21 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                     // Animal Type Dropdown
                     Row(
                       children: [
-                        const Text("Animal Type", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                        const Text("Animal Type",
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w600)),
                         const SizedBox(width: 12),
                         Expanded(
                           child: SizedBox(
                             height: 40,
                             child: DropdownButtonFormField<String>(
-                              initialValue: _animalType,
+                              value: _animalType,
                               items: ["Cow", "Buffalo"]
-                                  .map((e) => DropdownMenuItem(value: e, child: Text(e, style: const TextStyle(fontSize: 14))))
+                                  .map((e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(e,
+                                          style:
+                                              const TextStyle(fontSize: 14))))
                                   .toList(),
                               onChanged: (val) {
                                 setState(() {
@@ -219,10 +237,12 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide.none,
                                 ),
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 0),
                               ),
                               borderRadius: BorderRadius.circular(8),
-                              icon: const Icon(Icons.arrow_drop_down, size: 18, color: AppColors.textSecondary),
+                              icon: const Icon(Icons.arrow_drop_down,
+                                  size: 18, color: AppColors.textSecondary),
                             ),
                           ),
                         ),
@@ -239,7 +259,10 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                             children: [
                               const Padding(
                                 padding: EdgeInsets.only(left: 4.0),
-                                child: Text("Quantity (lit.)", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                                child: Text("Quantity (lit.)",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600)),
                               ),
                               const SizedBox(height: 6),
                               SizedBox(
@@ -255,7 +278,8 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                                       borderRadius: BorderRadius.circular(8),
                                       borderSide: BorderSide.none,
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 12, vertical: 10),
                                   ),
                                 ),
                               ),
@@ -269,7 +293,10 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                             children: [
                               const Padding(
                                 padding: EdgeInsets.only(left: 4.0),
-                                child: Text("Fat %", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                                child: Text("Fat %",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600)),
                               ),
                               const SizedBox(height: 6),
                               SizedBox(
@@ -285,7 +312,8 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                                       borderRadius: BorderRadius.circular(8),
                                       borderSide: BorderSide.none,
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 12, vertical: 10),
                                   ),
                                 ),
                               ),
@@ -298,7 +326,8 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
 
                     // Total Price
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 10),
                       decoration: BoxDecoration(
                         color: AppColors.inputFieldColor,
                         borderRadius: BorderRadius.circular(8),
@@ -322,7 +351,8 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                         onPressed: () {},
                         child: const Text(
                           "Submit Entry",
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
