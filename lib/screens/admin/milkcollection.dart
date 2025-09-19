@@ -584,7 +584,6 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
       ),
     );
   }
-<<<<<<< Updated upstream
 
   String _getMonthName(int month) {
     switch (month) {
@@ -617,6 +616,3 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
     }
   }
 }
-=======
-}
->>>>>>> Stashed changes
