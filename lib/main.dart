@@ -1,7 +1,5 @@
-// ignore_for_file: unused_import
 import 'package:flutter/material.dart';
 import 'screens/login_page.dart';
-import 'screens/userdashboard.dart';
 import 'screens/splash.dart';
 
 void main() {
