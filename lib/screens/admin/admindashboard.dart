@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'usermanagement.dart';
 import 'milkcollection.dart';
+import 'sellmilk.dart';
+import 'buymilkpayment.dart';
+import 'sellmilkpayment.dart';
 import '../settings.dart';
 import '../color.dart';
 
@@ -9,9 +12,8 @@ class AdminDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: bgcolor,
+      backgroundColor: AppColors.bgColor, // Using the getter from color.dart
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -60,8 +62,14 @@ class AdminDashboard extends StatelessWidget {
                     _buildDashboardCard(
                       context,
                       title: "Milk Collection Entry",
-                      imagePath: "assets/milk_bottle.png", // ✅ Example with image
+                      imagePath: "assets/milk_bottle.png",
                       page: const MilkEntryPage(),
+                    ),
+                    _buildDashboardCard(
+                      context,
+                      title: "Milk Selling",
+                      icon: Icons.attach_money,
+                      page: const SellMilkPage(),
                     ),
                     _buildDashboardCard(
                       context,
@@ -74,12 +82,6 @@ class AdminDashboard extends StatelessWidget {
                       title: "Sell Milk Payment",
                       icon: Icons.assignment_turned_in,
                       page: const SellMilkPaymentPage(),
-                    ),
-                    _buildDashboardCard(
-                      context,
-                      title: "Milk Selling",
-                      icon: Icons.attach_money,
-                      page: const MilkSellingPage(),
                     ),
                     _buildDashboardCard(
                       context,
@@ -105,7 +107,6 @@ class AdminDashboard extends StatelessWidget {
     String? imagePath,
     required Widget page,
   }) {
-
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -114,7 +115,7 @@ class AdminDashboard extends StatelessWidget {
         );
       },
       child: Card(
-        color: cardColor,
+        color: AppColors.cardColor, // Using the getter from color.dart
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -147,32 +148,4 @@ class AdminDashboard extends StatelessWidget {
       ),
     );
   }
-}
-
-// Dummy Pages for Navigation
-
-
-
-class BuyMilkPaymentPage extends StatelessWidget {
-  const BuyMilkPaymentPage({super.key});
-  @override
-  Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(title: const Text("Buy Milk Payment")),
-      body: const Center(child: Text("Buy Milk Payment Records")));
-}
-
-class SellMilkPaymentPage extends StatelessWidget {
-  const SellMilkPaymentPage({super.key});
-  @override
-  Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(title: const Text("Sell Milk Payment")),
-      body: const Center(child: Text("Sell Milk Payment Records")));
-}
-
-class MilkSellingPage extends StatelessWidget {
-  const MilkSellingPage({super.key});
-  @override
-  Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(title: const Text("Milk Selling")),
-      body: const Center(child: Text("Milk Selling Records")));
 }

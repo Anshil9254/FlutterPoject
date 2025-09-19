@@ -17,9 +17,9 @@ class _UPIPaymentPageState extends State<UPIPaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgcolor,
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        backgroundColor: bgcolor,
+        backgroundColor: AppColors.bgColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -53,7 +53,7 @@ class _UPIPaymentPageState extends State<UPIPaymentPage> {
                       ],
                     ),
                     child:  Icon(Icons.account_balance_wallet, 
-                            size: 32, color: (buttonColor)),
+                            size: 32, color: (AppColors.buttonColor)),
                   ),
                   const SizedBox(height: 15),
                   const Text(
@@ -87,7 +87,7 @@ class _UPIPaymentPageState extends State<UPIPaymentPage> {
                         hintText: "username@upi",
                         filled: true,
                         fillColor: Colors.white,
-                        prefixIcon:  Icon(Icons.payment, color: buttonColor),
+                        prefixIcon:  Icon(Icons.payment, color: AppColors.buttonColor),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide.none,
@@ -168,11 +168,11 @@ class _UPIPaymentPageState extends State<UPIPaymentPage> {
                           child: Container(
                             padding: const EdgeInsets.all(6),
                             decoration: BoxDecoration(
-                              color: buttonColor.withOpacity(0.1),
+                              color: AppColors.buttonColor.withOpacity(0.1),
                               shape: BoxShape.circle,
                             ),
                             child: Icon(Icons.qr_code_scanner, 
-                                    size: 20, color: buttonColor),
+                                    size: 20, color: AppColors.buttonColor),
                           ),
                         ),
                       ],
@@ -193,7 +193,7 @@ class _UPIPaymentPageState extends State<UPIPaymentPage> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: buttonColor,
+                        backgroundColor: AppColors.buttonColor,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -231,7 +231,7 @@ class _UPIPaymentPageState extends State<UPIPaymentPage> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return Dialog(
-          backgroundColor: bgcolor,
+          backgroundColor: AppColors.bgColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: Padding(
             padding: const EdgeInsets.all(24),
@@ -260,7 +260,7 @@ class _UPIPaymentPageState extends State<UPIPaymentPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
+                      backgroundColor: AppColors.bgColor,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),

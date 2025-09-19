@@ -63,7 +63,7 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgcolor,
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -90,7 +90,7 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: cardColor,
+                color: AppColors.cardColor,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -181,7 +181,7 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: (cardColor),
+                color: (AppColors.cardColor),
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -353,7 +353,7 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
               height: 60,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: buttonColor,
+                  backgroundColor: AppColors.buttonColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -465,7 +465,7 @@ class _CardPaymentPageState extends State<CardPaymentPage> {
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
+                      backgroundColor: AppColors.buttonColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),

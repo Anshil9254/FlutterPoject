@@ -1,73 +1,42 @@
 import 'package:dairyproject/screens/login_page.dart';
 import 'package:dairyproject/screens/profile.dart';
 import 'package:flutter/material.dart';
+import 'color.dart';
+import 'reusable_header.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-     // background cream color
-
     return Scaffold(
-      backgroundColor: Color(0xFFFFFBEF),
+      backgroundColor: AppColors.bgColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Back Button
-              Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back, size: 28, color: Colors.black),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-              const SizedBox(height: 10),
-
-              // Settings Title
-              Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFF4D8),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.settings, size: 26, color: Colors.black),
-                    SizedBox(width: 10),
-                    Text(
-                      "Settings",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                ),
+              // Use the reusable header
+              ReusableHeader(
+                title: "Settings",
+                icon: Icons.settings,
+                onBackPressed: () => Navigator.pop(context),
               ),
 
-              const SizedBox(height: 20),
-
-              // Center all settings buttons
+              // Settings options
               Expanded(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      _settingsButton(context, Icons.person, "Account", const ProfileScreen()),
-                      const SizedBox(height: 12),
-                      _settingsButton(context, Icons.lock, "Privacy and Security", const PrivacyPage()),
-                      const SizedBox(height: 12),
-                      _settingsButton(context, Icons.info, "About", const AboutPage()),
-                      const SizedBox(height: 12),
-                      _settingsButton(context, Icons.logout, "Log Out", const LoginScreen()),
-                    ],
-                  ),
+                child: ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  children: [
+                    _settingsButton(context, Icons.person, "Account", const ProfileScreen()),
+                    const SizedBox(height: 16),
+                    _settingsButton(context, Icons.lock, "Privacy and Security", const PrivacyPage()),
+                    const SizedBox(height: 16),
+                    _settingsButton(context, Icons.info, "About", const AboutPage()),
+                    const SizedBox(height: 16),
+                    _logoutButton(context),
+                  ],
                 ),
               ),
             ],
@@ -77,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  // Reusable Button Widget with navigation
+  // Settings button widget
   static Widget _settingsButton(BuildContext context, IconData icon, String label, Widget page) {
     return InkWell(
       onTap: () {
@@ -86,22 +55,61 @@ class SettingsScreen extends StatelessWidget {
           MaterialPageRoute(builder: (_) => page),
         );
       },
+      borderRadius: BorderRadius.circular(12),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
         decoration: BoxDecoration(
-          color: const Color(0xFFFFF4D8),
+          color: AppColors.cardColor,
           borderRadius: BorderRadius.circular(12),
+          boxShadow: AppColors.boxShadow,
         ),
         child: Row(
           children: [
-            Icon(icon, size: 22, color: Colors.black),
-            const SizedBox(width: 10),
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black,
+            Icon(icon, size: 24, color: Colors.black),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.black54),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Logout button with different styling
+  static Widget _logoutButton(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        _showLogoutConfirmationDialog(context);
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+        decoration: BoxDecoration(
+          color: AppColors.buttonColorSecondary.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: AppColors.buttonColorSecondary.withOpacity(0.3)),
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.logout, size: 24, color: AppColors.buttonColorSecondary),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                "Log Out",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.buttonColorSecondary,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ],
@@ -109,40 +117,133 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+
+  // Logout confirmation dialog
+  static void _showLogoutConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: AppColors.bgColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.logout, size: 48, color: Colors.redAccent),
+                const SizedBox(height: 16),
+                const Text(
+                  "Log Out",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  "Are you sure you want to log out?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black54,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        "Cancel",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (_) => const LoginScreen()),
+                          (route) => false,
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.buttonColorSecondary,
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      ),
+                      child: const Text(
+                        "Log Out",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
-// Dummy Pages (Replace with your actual pages)
-
+// Privacy Page
 class PrivacyPage extends StatelessWidget {
   const PrivacyPage({super.key});
   @override
   Widget build(BuildContext context) {
-    return _simplePage(context, "Privacy & Security Page");
+    return _simplePage(context, "Privacy & Security");
   }
 }
 
+// About Page
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
   @override
   Widget build(BuildContext context) {
-    return _simplePage(context, "About Page");
+    return _simplePage(context, "About");
   }
 }
-
-
 
 // Reusable simple page
 Widget _simplePage(BuildContext context, String title) {
   return Scaffold(
+    backgroundColor: AppColors.bgColor,
     appBar: AppBar(
-      backgroundColor: const Color(0xFFFFF4D8),
+      backgroundColor: AppColors.cardColor,
       title: Text(title, style: const TextStyle(color: Colors.black)),
       iconTheme: const IconThemeData(color: Colors.black),
+      elevation: 0,
     ),
-    body: Center(
-      child: Text(
-        title,
-        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+    body: Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.cardColor,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: AppColors.boxShadow,
+            ),
+            child: Text(
+              "This is the $title page. Add your content here.",
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
+        ],
       ),
     ),
   );

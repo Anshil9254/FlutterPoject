@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'color.dart';
+import 'reusable_header.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -83,50 +84,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: (bgcolor),
+      backgroundColor: AppColors.bgColor,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Back button
-              IconButton(
-                icon: const Icon(Icons.arrow_back, size: 28, color: Colors.black),
-                onPressed: () => Navigator.pop(context),
+              // Use the reusable header
+              ReusableHeader(
+                title: "Profile",
+                icon: Icons.person,
+                onBackPressed: () => Navigator.pop(context),
               ),
-              const SizedBox(height: 10),
-
-              // Profile title
-              Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: (cardColor),
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: const [
-                    Icon(Icons.person, size: 26, color: Colors.black),
-                    SizedBox(width: 10),
-                    Text(
-                      "Profile",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
 
               // Profile Image
               Center(
@@ -143,14 +113,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         right: 0,
                         child: Container(
                           padding: const EdgeInsets.all(4),
-                          decoration:  BoxDecoration(
-                            color: (buttonColor),
+                          decoration: BoxDecoration(
+                            color: AppColors.buttonColor,
                             shape: BoxShape.circle,
                           ),
-                          child:  Icon(
+                          child: Icon(
                             Icons.camera_alt,
                             size: 20,
-                            color: (cardColor),
+                            color: AppColors.cardColor,
                           ),
                         ),
                       ),
@@ -163,7 +133,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: (cardColor),
+                  color: AppColors.cardColor,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
@@ -198,7 +168,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: ElevatedButton(
                               onPressed: toggleEditMode,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green,
+                                backgroundColor: AppColors.buttonColor,
+                                foregroundColor: AppColors.textOnGold,
                                 minimumSize: const Size(double.infinity, 48),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -206,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               child: const Text(
                                 "Update",
-                                style: TextStyle(fontSize: 16, color: Colors.white),
+                                style: TextStyle(fontSize: 16),
                               ),
                             ),
                           ),
@@ -215,15 +186,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: OutlinedButton(
                               onPressed: cancelEdit,
                               style: OutlinedButton.styleFrom(
+                                backgroundColor: AppColors.buttonColorSecondary,
+                                foregroundColor: AppColors.textOnGold,
                                 minimumSize: const Size(double.infinity, 48),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                side: const BorderSide(color: Colors.grey),
+                                side: BorderSide(color: AppColors.textSecondary),
                               ),
-                              child: const Text(
+                              child: Text(
                                 "Cancel",
-                                style: TextStyle(fontSize: 16, color: Colors.grey),
+                                style: TextStyle(fontSize: 16, color: AppColors.textOnGold),
                               ),
                             ),
                           ),
@@ -233,13 +206,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Center(
                         child: ElevatedButton.icon(
                           onPressed: toggleEditMode,
-                          icon: const Icon(Icons.edit, color: Colors.white),
-                          label: const Text(
+                          icon: Icon(Icons.edit, color: AppColors.textOnGold),
+                          label: Text(
                             "Edit",
-                            style: TextStyle(fontSize: 16, color: Colors.white),
+                            style: TextStyle(fontSize: 16, color: AppColors.textOnGold),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
+                            backgroundColor: AppColors.buttonColor,
                             minimumSize: const Size(double.infinity, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -262,7 +235,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: const Color(0xFFF9F9F9),
+        color: AppColors.inputFieldColor,
         borderRadius: BorderRadius.circular(6),
         border: Border.all(color: Colors.grey.shade300),
       ),
@@ -274,6 +247,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
+              color: AppColors.textPrimary,
             ),
           ),
           const SizedBox(width: 10),
@@ -287,14 +261,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   border: OutlineInputBorder(),
                 ),
-                style: const TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16, color: AppColors.textPrimary),
               ),
             )
           else
             Flexible(
               child: Text(
                 isPassword ? '•' * controller.text.length : controller.text,
-                style: const TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16, color: AppColors.textPrimary),
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.right,
               ),

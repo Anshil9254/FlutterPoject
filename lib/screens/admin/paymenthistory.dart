@@ -17,9 +17,9 @@ class PaymentHistoryPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: (bgcolor), // Cream background
+      backgroundColor: (AppColors.bgColor), // Cream background
       appBar: AppBar(
-        backgroundColor: (bgcolor),
+        backgroundColor: (AppColors.bgColor),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -46,7 +46,7 @@ class PaymentHistoryPage extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: (cardColor),
+                color: (AppColors.cardColor),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Row(
@@ -69,7 +69,7 @@ class PaymentHistoryPage extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 12),
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: (cardColor),
+                      color: (AppColors.cardColor),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
