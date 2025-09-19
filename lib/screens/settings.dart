@@ -29,11 +29,14 @@ class SettingsScreen extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   children: [
-                    _settingsButton(context, Icons.person, "Account", const ProfileScreen()),
+                    _settingsButton(context, Icons.person, "Account",
+                        const ProfileScreen()),
                     const SizedBox(height: 16),
-                    _settingsButton(context, Icons.lock, "Privacy and Security", const PrivacyPage()),
+                    _settingsButton(context, Icons.lock, "Privacy and Security",
+                        const PrivacyPage()),
                     const SizedBox(height: 16),
-                    _settingsButton(context, Icons.info, "About", const AboutPage()),
+                    _settingsButton(
+                        context, Icons.info, "About", const AboutPage()),
                     const SizedBox(height: 16),
                     _logoutButton(context),
                   ],
@@ -47,7 +50,8 @@ class SettingsScreen extends StatelessWidget {
   }
 
   // Settings button widget
-  static Widget _settingsButton(BuildContext context, IconData icon, String label, Widget page) {
+  static Widget _settingsButton(
+      BuildContext context, IconData icon, String label, Widget page) {
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -77,7 +81,8 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.black54),
+            const Icon(Icons.arrow_forward_ios,
+                size: 18, color: Colors.black54),
           ],
         ),
       ),
@@ -96,7 +101,8 @@ class SettingsScreen extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.buttonColorSecondary.withOpacity(0.1),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.buttonColorSecondary.withOpacity(0.3)),
+          border: Border.all(
+              color: AppColors.buttonColorSecondary.withOpacity(0.3)),
         ),
         child: Row(
           children: [
@@ -171,13 +177,15 @@ class SettingsScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (_) => const LoginScreen()),
+                          MaterialPageRoute(
+                              builder: (_) => const LoginScreen()),
                           (route) => false,
                         );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.buttonColorSecondary,
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
                       ),
                       child: const Text(
                         "Log Out",
@@ -201,9 +209,82 @@ class SettingsScreen extends StatelessWidget {
 // Privacy Page
 class PrivacyPage extends StatelessWidget {
   const PrivacyPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return _simplePage(context, "Privacy & Security");
+    return Scaffold(
+      backgroundColor: AppColors.bgColor,
+      appBar: AppBar(
+        title: const Text("Privacy & Security"),
+        backgroundColor: const Color.fromRGBO(255, 242, 217, 1),
+        iconTheme: const IconThemeData(color: Colors.black),
+        elevation: 0,
+        titleTextStyle: const TextStyle(color: Colors.black, fontSize: 20),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildCard(
+                title: "Data Privacy",
+                content:
+                    "We respect your privacy and do not share your personal data with third parties without consent.",
+              ),
+              _buildCard(
+                title: "Data Collection",
+                content:
+                    "We collect minimal information such as your name, email, and preferences to provide better services.",
+              ),
+              _buildCard(
+                title: "User Control",
+                content:
+                    "You can update or delete your account information anytime from Settings.",
+              ),
+              _buildCard(
+                title: "Security Measures",
+                content:
+                    "We use end-to-end encryption and regular audits to protect your data.",
+              ),
+              _buildCard(
+                title: "Permissions",
+                content:
+                    "This app may request access to camera, location, or storage for specific features.",
+              ),
+              _buildCard(
+                title: "Contact",
+                content:
+                    "If you have questions, contact us at support@example.com.",
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCard({required String title, required String content}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: Card(
+        color: AppColors.cardColor, // keep same card background
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.all(14.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16)),
+              const SizedBox(height: 8),
+              Text(content, style: const TextStyle(fontSize: 14)),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -221,7 +302,7 @@ Widget _simplePage(BuildContext context, String title) {
   return Scaffold(
     backgroundColor: AppColors.bgColor,
     appBar: AppBar(
-      backgroundColor: AppColors.cardColor,
+      backgroundColor: const Color.fromRGBO(255, 242, 217, 1),
       title: Text(title, style: const TextStyle(color: Colors.black)),
       iconTheme: const IconThemeData(color: Colors.black),
       elevation: 0,
