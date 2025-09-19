@@ -202,7 +202,7 @@ class _MilkEntryPageState extends State<MilkEntryPage> {
                           child: SizedBox(
                             height: 40,
                             child: DropdownButtonFormField<String>(
-                              initialValue: _animalType,
+                              value: _animalType,
                               items: ["Cow", "Buffalo"]
                                   .map((e) => DropdownMenuItem(value: e, child: Text(e, style: const TextStyle(fontSize: 14))))
                                   .toList(),

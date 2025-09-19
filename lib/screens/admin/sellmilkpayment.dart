@@ -91,7 +91,7 @@ class SellMilkPaymentPage extends StatelessWidget {
                   
                   // Status Dropdown
                   DropdownButtonFormField<String>(
-                    initialValue: selectedStatus,
+                    value: selectedStatus,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: AppColors.inputFieldColor,
