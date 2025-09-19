@@ -214,47 +214,58 @@ class PrivacyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
-      appBar: AppBar(
-        title: const Text("Privacy & Security"),
-        backgroundColor: const Color.fromRGBO(255, 242, 217, 1),
-        iconTheme: const IconThemeData(color: Colors.black),
-        elevation: 0,
-        titleTextStyle: const TextStyle(color: Colors.black, fontSize: 20),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildCard(
-                title: "Data Privacy",
-                content:
-                    "We respect your privacy and do not share your personal data with third parties without consent.",
+              // Use the reusable header
+              ReusableHeader(
+                title: "Privacy & Security",
+                icon: Icons.lock,
+                onBackPressed: () => Navigator.pop(context),
               ),
-              _buildCard(
-                title: "Data Collection",
-                content:
-                    "We collect minimal information such as your name, email, and preferences to provide better services.",
-              ),
-              _buildCard(
-                title: "User Control",
-                content:
-                    "You can update or delete your account information anytime from Settings.",
-              ),
-              _buildCard(
-                title: "Security Measures",
-                content:
-                    "We use end-to-end encryption and regular audits to protect your data.",
-              ),
-              _buildCard(
-                title: "Permissions",
-                content:
-                    "This app may request access to camera, location, or storage for specific features.",
-              ),
-              _buildCard(
-                title: "Contact",
-                content:
-                    "If you have questions, contact us at support@example.com.",
+              
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 16),
+                      _buildCard(
+                        title: "Data Privacy",
+                        content:
+                            "We respect your privacy and do not share your personal data with third parties without consent.",
+                      ),
+                      _buildCard(
+                        title: "Data Collection",
+                        content:
+                            "We collect minimal information such as your name, email, and preferences to provide better services.",
+                      ),
+                      _buildCard(
+                        title: "User Control",
+                        content:
+                            "You can update or delete your account information anytime from Settings.",
+                      ),
+                      _buildCard(
+                        title: "Security Measures",
+                        content:
+                            "We use end-to-end encryption and regular audits to protect your data.",
+                      ),
+                      _buildCard(
+                        title: "Permissions",
+                        content:
+                            "This app may request access to camera, location, or storage for specific features.",
+                      ),
+                      _buildCard(
+                        title: "Contact",
+                        content:
+                            "If you have questions, contact us at support@example.com.",
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
@@ -291,41 +302,51 @@ class PrivacyPage extends StatelessWidget {
 // About Page
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
+  
   @override
   Widget build(BuildContext context) {
-    return _simplePage(context, "About");
-  }
-}
-
-// Reusable simple page
-Widget _simplePage(BuildContext context, String title) {
-  return Scaffold(
-    backgroundColor: AppColors.bgColor,
-    appBar: AppBar(
-      backgroundColor: const Color.fromRGBO(255, 242, 217, 1),
-      title: Text(title, style: const TextStyle(color: Colors.black)),
-      iconTheme: const IconThemeData(color: Colors.black),
-      elevation: 0,
-    ),
-    body: Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: AppColors.cardColor,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: AppColors.boxShadow,
-            ),
-            child: Text(
-              "This is the $title page. Add your content here.",
-              style: const TextStyle(fontSize: 16),
-            ),
+    return Scaffold(
+      backgroundColor: AppColors.bgColor,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Use the reusable header
+              ReusableHeader(
+                title: "About",
+                icon: Icons.info,
+                onBackPressed: () => Navigator.pop(context),
+              ),
+              
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: AppColors.cardColor,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: AppColors.boxShadow,
+                        ),
+                        child: const Text(
+                          "This is the About page. Add your content here.",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
