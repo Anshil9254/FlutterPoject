@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../userdashboard.dart';
+import '../user/userdashboard.dart';
 import '../color.dart';
 
 // Wallet Payment Page (Centered)
@@ -74,71 +74,116 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
                 style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600)),
         centerTitle: true,
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Payment amount display
+              // Decorative header
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.only(bottom: 25),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
+                  color: AppColors.goldLight,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: AppColors.boxShadow,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.goldLight,
+                      AppColors.goldLight.withOpacity(0.8),
+                    ],
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    // Payment illustration
+                    Container(
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: AppColors.gold.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: AppColors.gold.withOpacity(0.3),
+                          width: 2,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.account_balance_wallet_rounded,
+                        size: 40,
+                        color: AppColors.goldDark,
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    
+                    // Payment amount display
+                    Text(
+                      "₹ ${widget.amount.toStringAsFixed(2)}",
+                      style: const TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    const Text(
+                      "Total Amount to Pay",
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                   ],
+                ),
+              ),
+              
+              // Wallet selection section
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: AppColors.cardColor,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: AppColors.boxShadow,
                 ),
                 child: Column(
                   children: [
                     const Text(
-                      "Total Amount",
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      "₹ ${widget.amount.toStringAsFixed(2)}",
-                      style: const TextStyle(
-                        fontSize: 24,
+                      "Select Wallet", 
+                      style: TextStyle(
+                        fontSize: 20, 
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      "You'll be redirected to the selected app to complete payment",
+                      style: TextStyle(
+                        fontSize: 14, 
+                        color: AppColors.textSecondary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 25),
+                    
+                    // Wallet Options in Card Format
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 5),
+                          _buildWalletCard("PhonePe", Icons.payment, "phonepe"),
+                          const SizedBox(width: 15),
+                          _buildWalletCard("Paytm", Icons.account_balance_wallet, "paytm"),
+                          const SizedBox(width: 15),
+                          _buildWalletCard("Google Pay", Icons.payment, "gpay"),
+                          const SizedBox(width: 5),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
+              
               const SizedBox(height: 30),
-              
-              const Text(
-                "Select Wallet", 
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                "You'll be redirected to the selected app to complete payment",
-                style: TextStyle(fontSize: 14, color: Colors.grey),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 30),
-              
-              // Wallet Options in Card Format
-              Wrap(
-                spacing: 20,
-                runSpacing: 20,
-                children: [
-                  _buildWalletCard("PhonePe", Icons.account_balance_wallet, "phonepe"),
-                  _buildWalletCard("Paytm", Icons.account_balance_wallet, "paytm"),
-                  _buildWalletCard("Google Pay", Icons.account_balance_wallet, "gpay"),
-                ],
-              ),
-              
-              const SizedBox(height: 40),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -146,11 +191,12 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
                     backgroundColor: _selectedWallet != null 
                       ? AppColors.buttonColor 
                       : Colors.grey.shade400,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 18),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     elevation: 3,
+                    shadowColor: AppColors.shadowColor,
                   ),
                   onPressed: _selectedWallet == null 
                     ? null
@@ -181,13 +227,14 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
                   child: Text(
                     "Pay ₹ ${widget.amount.toStringAsFixed(2)}",
                     style: const TextStyle(
-                      fontSize: 17, 
+                      fontSize: 18, 
                       color: Colors.white,
                       fontWeight: FontWeight.w600
                     ),
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -196,15 +243,15 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
   }
 
   Widget _buildWalletCard(String name, IconData icon, String value) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         setState(() {
           _selectedWallet = value;
         });
       },
       child: Container(
-        width: 120,
-        height: 120,
+        width: 110,
+        height: 130,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           color: _selectedWallet == value 
@@ -213,27 +260,21 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
           borderRadius: BorderRadius.circular(15),
           border: _selectedWallet == value 
             ? Border.all(color: _walletColors[value]!, width: 2) 
-            : Border.all(color: Colors.grey.shade200, width: 1),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.15),
-              blurRadius: 10,
-              offset: const Offset(0, 5),
-            ),
-          ],
+            : Border.all(color: Colors.grey.shade200, width: 1.5),
+          boxShadow: AppColors.boxShadow,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: _walletColors[value]!.withOpacity(0.1),
+                color: _walletColors[value]!.withOpacity(0.15),
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 icon, 
-                size: 30, 
+                size: 28, 
                 color: _walletColors[value],
               ),
             ),
@@ -293,7 +334,7 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                 CircularProgressIndicator(
+                CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(AppColors.buttonColor),
                 ),
                 const SizedBox(height: 20),
@@ -381,6 +422,7 @@ class _WalletPaymentPageState extends State<WalletPaymentPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: AppColors.bgColor,
           title: const Text("App Not Installed"),
           content: Text(
             "${_walletDisplayNames[walletApp]} is not installed on your device. "

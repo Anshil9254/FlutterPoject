@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'userdashboard.dart';
-import 'admin/payment_wallet.dart';
-import 'color.dart';
-import 'reusable_header.dart';
+import '../admin/payment_wallet.dart';
+import '../color.dart';
+import '../reusable_header.dart';
 
 class InvoicePage extends StatelessWidget {
   const InvoicePage({super.key});

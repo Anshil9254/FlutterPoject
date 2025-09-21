@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'color.dart';
+import '../color.dart';
 import 'milkhistory.dart';
 import 'invoice.dart';
-import 'admin/paymenthistory.dart';
+import 'paymenthistory.dart';
 import 'settings.dart';
 import 'profile.dart';
 

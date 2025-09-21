@@ -359,27 +359,58 @@ class SellMilkPaymentPage extends StatelessWidget {
                         children: [
                           // Milk bottle image
                           Image.asset('assets/milk_bottle.png', width: 32, height: 32),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 12),
                           
+                          // Name and quantity in one line
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  customer["name"]!,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.textPrimary,
-                                  ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        customer["name"]!,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors.textPrimary,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      customer["quantity"]!,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: AppColors.textSecondary,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(height: 4),
-                                Text(
-                                  customer["quantity"]!,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: AppColors.textSecondary,
-                                  ),
+                                // Status indicator
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 8,
+                                      height: 8,
+                                      decoration: BoxDecoration(
+                                        color: isCompleted ? Colors.green : Colors.red,
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Text(
+                                      isCompleted ? "Completed" : "Pending",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: isCompleted ? Colors.green : Colors.red,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -403,39 +434,44 @@ class SellMilkPaymentPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 12),
 
-                          // Status indicator
-                          Container(
-                            width: 12,
-                            height: 12,
-                            decoration: BoxDecoration(
-                              color: isCompleted ? Colors.green : Colors.red,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-
-                          // Action Buttons
-                          Row(
-                            children: [
-                              // Edit Button
-                              IconButton(
-                                icon: Icon(Icons.edit, color: Colors.black),
-                                onPressed: () => showEditPaymentDialog(context, customer),
+                          // Action Buttons - using a popup menu for a cleaner look
+                          PopupMenuButton<String>(
+                            icon: const Icon(Icons.more_vert, color: Colors.grey),
+                            itemBuilder: (BuildContext context) => [
+                              const PopupMenuItem(
+                                value: "edit",
+                                child: ListTile(
+                                  leading: Icon(Icons.edit, size: 20),
+                                  title: Text("Edit"),
+                                ),
                               ),
-                              // Details Button
-                              IconButton(
-                                icon: Icon(Icons.more_horiz, color: Colors.black),
-                                onPressed: () => showPaymentDetailsDialog(context, customer),
+                              const PopupMenuItem(
+                                value: "details",
+                                child: ListTile(
+                                  leading: Icon(Icons.info_outline, size: 20),
+                                  title: Text("Details"),
+                                ),
                               ),
-                              // Delete Button
-                              IconButton(
-                                icon: Icon(Icons.delete, color: AppColors.buttonColorSecondary),
-                                onPressed: () => showDeleteConfirmationDialog(context, customer["name"]!),
+                              const PopupMenuItem(
+                                value: "delete",
+                                child: ListTile(
+                                  leading: Icon(Icons.delete, size: 20, color: Colors.red),
+                                  title: Text("Delete", style: TextStyle(color: Colors.red)),
+                                ),
                               ),
                             ],
-                          )
+                            onSelected: (value) {
+                              if (value == "edit") {
+                                showEditPaymentDialog(context, customer);
+                              } else if (value == "details") {
+                                showPaymentDetailsDialog(context, customer);
+                              } else if (value == "delete") {
+                                showDeleteConfirmationDialog(context, customer["name"]!);
+                              }
+                            },
+                          ),
                         ],
                       ),
                     );

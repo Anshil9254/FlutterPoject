@@ -1,8 +1,8 @@
 import 'package:dairyproject/screens/login_page.dart';
-import 'package:dairyproject/screens/profile.dart';
+import 'package:dairyproject/screens/user/profile.dart';
 import 'package:flutter/material.dart';
-import 'color.dart';
-import 'reusable_header.dart';
+import '../color.dart';
+import '../reusable_header.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'color.dart';
-import 'reusable_header.dart';
+import '../color.dart';
+import '../reusable_header.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

@@ -4,7 +4,7 @@ import 'milkcollection.dart';
 import 'sellmilk.dart';
 import 'buymilkpayment.dart';
 import 'sellmilkpayment.dart';
-import '../settings.dart';
+import '../user/settings.dart';
 import '../color.dart';
 
 class AdminDashboard extends StatelessWidget {
