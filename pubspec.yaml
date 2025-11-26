@@ -13,6 +13,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   url_launcher: ^6.1.10
   image_picker: ^1.0.4
+  cloud_firestore: ^6.1.0
+  intl: ^0.20.2
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +29,8 @@ flutter:
     - assets/logo.png
     - assets/milk_bottle.png
     - assets/profile.png
+    - assets/cow.png
+    - assets/buffalo.png
 
 # This should be OUTSIDE the flutter: section
 flutter_launcher_icons:

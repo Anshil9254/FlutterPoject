@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "784525489483",
+    "project_id": "freshpourproject",
+    "storage_bucket": "freshpourproject.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784525489483:android:9594b896fc6ff8ef6924ce",
+        "android_client_info": {
+          "package_name": "com.example.dairyproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR3qiIm2djSlQHiibjchWFLQnxC54XUJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784525489483:android:46a20249dd686fae6924ce",
+        "android_client_info": {
+          "package_name": "com.example.freshpour"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR3qiIm2djSlQHiibjchWFLQnxC54XUJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

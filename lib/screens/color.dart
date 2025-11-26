@@ -7,6 +7,7 @@ class AppColors {
   static const Color cardColor = Color(0xFFFFF2D9); // White for cards
   static const Color buttonColor = Color(0xFF1F6C3B); // Gold color for buttons
   static const Color buttonColorSecondary = Color(0xFFF44336); 
+  static const Color successColor = Color(0xFF4CAF50); // Green color for success
 
   // Input fields and containers
   static const Color inputFieldColor = Color(0xFFFFFCEA); // Light yellow for input fields

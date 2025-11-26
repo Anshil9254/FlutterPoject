@@ -1,12 +1,15 @@
 import 'package:dairyproject/screens/login_page.dart';
 import 'package:dairyproject/screens/user/profile.dart';
 import 'package:flutter/material.dart';
+import 'buymilk_pricechange.dart';
+import 'sellmilk_pricechange.dart';
+import 'admin_notifications_page.dart';
 import '../color.dart';
 import '../reusable_header.dart';
-import '../../session_manager.dart';
+import '../../session_manager.dart'; // Import the session manager
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class Adminsettings extends StatelessWidget {
+  const Adminsettings({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +33,48 @@ class SettingsScreen extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   children: [
-                    _settingsButton(context, Icons.person, "Account",
-                        const ProfileScreen()),
-                    const SizedBox(height: 16),
-                    _settingsButton(context, Icons.lock, "Privacy and Security",
-                        const PrivacyPage()),
+                    _settingsButton(
+                      context,
+                      Icons.person,
+                      "Account",
+                      const ProfileScreen(),
+                    ),
                     const SizedBox(height: 16),
                     _settingsButton(
-                        context, Icons.info, "About", const AboutPage()),
+                      context,
+                      Icons.notifications,
+                      "Payment Notifications",
+                      const AdminNotificationsPage(),
+                    ),
+                    const SizedBox(height: 16),
+                    _settingsButton(
+                      context,
+                      Icons.price_change,
+                      "Buy MilkPrice Change",
+                      const PriceManagementPage(),
+                    ),
+
+                    const SizedBox(height: 16),
+                    _settingsButton(
+                      context,
+                      Icons.price_change,
+                      "Sell Milk Price Change",
+                      const SellMilkPriceChangePage(),
+                    ),
+                    const SizedBox(height: 16),
+                    _settingsButton(
+                      context,
+                      Icons.lock,
+                      "Privacy and Security",
+                      const PrivacyPage(),
+                    ),
+                    const SizedBox(height: 16),
+                    _settingsButton(
+                      context,
+                      Icons.info,
+                      "About",
+                      const AboutPage(),
+                    ),
                     const SizedBox(height: 16),
                     _logoutButton(context),
                   ],
@@ -51,14 +88,15 @@ class SettingsScreen extends StatelessWidget {
   }
 
   // Settings button widget
-  Widget _settingsButton(
-      BuildContext context, IconData icon, String label, Widget page) {
+  static Widget _settingsButton(
+    BuildContext context,
+    IconData icon,
+    String label,
+    Widget page,
+  ) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => page),
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (_) => page));
       },
       borderRadius: BorderRadius.circular(12),
       child: Container(
@@ -82,8 +120,11 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const Icon(Icons.arrow_forward_ios,
-                size: 18, color: Colors.black54),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 18,
+              color: Colors.black54,
+            ),
           ],
         ),
       ),
@@ -91,7 +132,7 @@ class SettingsScreen extends StatelessWidget {
   }
 
   // Logout button with different styling
-  Widget _logoutButton(BuildContext context) {
+  static Widget _logoutButton(BuildContext context) {
     return InkWell(
       onTap: () {
         _showLogoutConfirmationDialog(context);
@@ -103,7 +144,8 @@ class SettingsScreen extends StatelessWidget {
           color: AppColors.buttonColorSecondary.withOpacity(0.1),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-              color: AppColors.buttonColorSecondary.withOpacity(0.3)),
+            color: AppColors.buttonColorSecondary.withOpacity(0.3),
+          ),
         ),
         child: Row(
           children: [
@@ -125,105 +167,84 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  // Logout confirmation dialog - FIXED
-  void _showLogoutConfirmationDialog(BuildContext context) {
+  // Logout confirmation dialog
+  static void _showLogoutConfirmationDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Dialog(
+        return AlertDialog(
           backgroundColor: AppColors.bgColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(Icons.logout, size: 48, color: Colors.redAccent),
-                const SizedBox(height: 16),
-                const Text(
-                  "Log Out",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  "Are you sure you want to log out?",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text(
-                        "Cancel",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        // Use the proper logout method
-                        await _performLogout(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.buttonColorSecondary,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 12),
-                      ),
-                      child: const Text(
-                        "Log Out",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          title: const Column(
+            children: [
+              Icon(Icons.logout, size: 48, color: Colors.redAccent),
+              SizedBox(height: 10),
+              Text(
+                "Log Out",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
+          content: const Text(
+            "Are you sure you want to log out?",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Colors.black54),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                "Cancel",
+                style: TextStyle(fontSize: 16, color: Colors.black54),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                // Show loading indicator
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                );
+
+                // Clear session data first
+                await SessionManager.clearSession();
+
+                // Close loading dialog
+                if (context.mounted) {
+                  Navigator.pop(context);
+
+                  // Then navigate to login screen
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (_) => const LoginScreen()),
+                    (route) => false,
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.redAccent,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
+              ),
+              child: const Text(
+                "Log Out",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
+          ],
         );
       },
     );
-  }
-
-  // Perform logout operation
-  Future<void> _performLogout(BuildContext context) async {
-    try {
-      // Import and use SessionManager for logout
-     // import 'package:dairyproject/session_manager.dart';
-      await SessionManager.clearSession();
-      
-      // Navigate to login screen and remove all previous routes
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
-        (Route<dynamic> route) => false,
-      );
-    } catch (e) {
-      print("Logout error: $e");
-      // If there's an error, still try to navigate to login
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
-        (Route<dynamic> route) => false,
-      );
-    }
   }
 }
 
@@ -247,7 +268,7 @@ class PrivacyPage extends StatelessWidget {
                 icon: Icons.lock,
                 onBackPressed: () => Navigator.pop(context),
               ),
-              
+
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -307,9 +328,13 @@ class PrivacyPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 16)),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
               const SizedBox(height: 8),
               Text(content, style: const TextStyle(fontSize: 14)),
             ],
@@ -323,7 +348,7 @@ class PrivacyPage extends StatelessWidget {
 // About Page
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -340,7 +365,7 @@ class AboutPage extends StatelessWidget {
                 icon: Icons.info,
                 onBackPressed: () => Navigator.pop(context),
               ),
-              
+
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
